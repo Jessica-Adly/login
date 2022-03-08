@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/sgin_in.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -19,12 +20,7 @@ class LoginScreen extends StatefulWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-        icon: Icon(Icons.arrow_back_ios),
-        onPressed: () => Navigator.of(context).pop(),
-      ),
-      ),
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Center(
@@ -43,6 +39,7 @@ class LoginScreen extends StatefulWidget {
                 height: 70.0,
               ),
               TextFormField(
+
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
                 onFieldSubmitted: (String value)
@@ -104,7 +101,7 @@ class LoginScreen extends StatefulWidget {
                   print(passwordController.text);
                 },
                   child: Text(
-                    'LOGIN',
+                    'Login',
                     style: TextStyle(
                       color: Colors.white,
                     ),
@@ -122,7 +119,11 @@ class LoginScreen extends StatefulWidget {
                   ),
                   TextButton(
                     onPressed: (){
-                      
+                      Navigator.push(
+                        context, MaterialPageRoute(
+                        builder: (context) => signin(),
+                      ),
+                      );
                     },
                     child: Text(
                     'Register Now',
@@ -131,7 +132,9 @@ class LoginScreen extends StatefulWidget {
                 ],
               ),
               TextButton(
-                onPressed: (){},
+                onPressed: (){
+
+                },
                 child: Text(
                   'Forget Password?',
                 ),
