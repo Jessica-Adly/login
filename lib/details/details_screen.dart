@@ -1,5 +1,7 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 
 class DetailsScreen extends StatefulWidget{
 
@@ -7,128 +9,100 @@ class DetailsScreen extends StatefulWidget{
   _DetailsScreenState createState() => _DetailsScreenState();
 }
 
-class _DetailsScreenState extends State<DetailsScreen> {
-  int photoIndex = 0;
-  List<String> photos = [
-    'images/example3.jpg',
-    'images/example3.jpg',
-    'images/example3.jpg',
-    'images/example3.jpg',
-  ];
-
-  void _previousImage() {
-    setState(() {
-      photoIndex = photoIndex > 0 ? photoIndex - 1 : 0;
-    });
-  }
-
-  void _nextImage() {
-    setState(() {
-      photoIndex = photoIndex < photos.length - 1 ? photoIndex + 1 : photoIndex;
-    });
-  }
-
-  int getColorHexFromStr(String colorStr) {
-    colorStr = "FF" + colorStr;
-    colorStr = colorStr.replaceAll("#", "");
-    int val = 0;
-    int len = colorStr.length;
-    for (int i = 0; i < len; i++) {
-      int hexDigit = colorStr.codeUnitAt(i);
-      if (hexDigit >= 48 && hexDigit <= 57) {
-        val += (hexDigit - 48) * (1 << (4 * (len - 1 - i)));
-      } else if (hexDigit >= 65 && hexDigit <= 70) {
-        // A..F
-        val += (hexDigit - 55) * (1 << (4 * (len - 1 - i)));
-      } else if (hexDigit >= 97 && hexDigit <= 102) {
-        // a..f
-        val += (hexDigit - 87) * (1 << (4 * (len - 1 - i)));
-      } else {
-        throw new FormatException("An error occurred when converting a color");
-      }
-    }
-    return val;
-  }
-
+ class _DetailsScreenState extends State<DetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        leading: IconButton(icon: Icon(Icons.arrow_back_ios,
+        color: Colors.black,),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
       body: ListView(
-        shrinkWrap: true,
-        children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Stack(
-                children: <Widget>[
-                  Container(
-                    height: 300.0,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(photos[photoIndex]),
-                            fit: BoxFit.cover)),
+        children: [
+          CarouselSlider(
+            items: [
+              //1st Image of Slider
+              Container(
+                margin: EdgeInsets.all(6.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  image: DecorationImage(
+                    image: AssetImage("images/example3.jpg"),
+                    fit: BoxFit.cover,
                   ),
-                  GestureDetector(
-                    child: Container(
-                      height: 275.0,
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.transparent,
-                    ),
-                    onTap: _nextImage,
-                  ),
-                  GestureDetector(
-                    child: Container(
-                      height: 275.0,
-                      width: MediaQuery.of(context).size.width / 2,
-                      color: Colors.transparent,
-                    ),
-                    onTap: _previousImage,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(right: 15.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        IconButton(
-                            icon: Icon(Icons.arrow_back_ios),
-                            color: Colors.black,
-                            onPressed: () {
-
-                            }),
-                        Material(
-                            elevation: 4.0,
-                            borderRadius: BorderRadius.circular(20.0),
-                            child: Container(
-                                height: 40.0,
-                                width: 40.0,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                child: IconButton(
-                                  icon: Icon(Icons.favorite,
-                                    color: Colors.red,),
-                                    onPressed: () {
-
-                                        },
-                                ),),),
-                      ],
-                    ),
-                  ),
-                  Positioned(
-                      top: 240.0,
-                      left: MediaQuery.of(context).size.width / 2 - 30.0,
-                      child: Row(
-                        children: <Widget>[
-                          SelectedPhoto(
-                            numberOfDots: photos.length,
-                            photoIndex: photoIndex,
-                          )
-                        ],
-                      ))
-                ],
+                ),
               ),
-              SizedBox(height: 20.0),
+
+              //2nd Image of Slider
+              Container(
+                margin: EdgeInsets.all(6.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  image: DecorationImage(
+                    image: AssetImage("images/example3.jpg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+
+              //3rd Image of Slider
+              Container(
+                margin: EdgeInsets.all(6.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  image: DecorationImage(
+                    image: AssetImage("images/example3.jpg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+
+              //4th Image of Slider
+              Container(
+                margin: EdgeInsets.all(6.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  image: DecorationImage(
+                    image: AssetImage("images/example3.jpg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+
+              //5th Image of Slider
+              Container(
+                margin: EdgeInsets.all(6.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  image: DecorationImage(
+                    image: AssetImage("images/example3.jpg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+
+            ],
+
+            //Slider Container properties
+            options: CarouselOptions(
+              height: 180.0,
+              enlargeCenterPage: true,
+              autoPlay: true,
+              aspectRatio: 16 / 9,
+              autoPlayCurve: Curves.fastOutSlowIn,
+              enableInfiniteScroll: true,
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              viewportFraction: 0.8,
+            ),
+          ),
+          SizedBox(height: 30.0),
               Padding(
                 padding: EdgeInsets.only(left: 15.0),
                 child: Text(
@@ -140,7 +114,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 10.0),
+          SizedBox(height: 10.0),
               Padding(
                 padding: const EdgeInsets.only(left:15.0),
                 child: Text('product',
@@ -200,7 +174,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         width: 50.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25.0),
-                            color: Color(getColorHexFromStr('#5A5551')),
+                            color: Colors.brown,
 
                         ),
                       ),
@@ -210,7 +184,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         width: 50.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25.0),
-                            color: Color(getColorHexFromStr('#C3BCB5'))
+                            color: Colors.black,
                         ),
                       ),
                       SizedBox(width: 15.0),
@@ -220,7 +194,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         width: 50.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25.0),
-                            color: Color(getColorHexFromStr('#EFEFEF'))
+                            color: Colors.blue,
                         ),
                       )
                     ],
@@ -279,145 +253,41 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             fontWeight: FontWeight.bold
                         ),
                       ),
-                      SizedBox(width: 10.0),
-                      Container(
+                         SizedBox(width: 10.0),
+                       Container(
                         height: 50.0,
-                        width: 50.0,
-                        child: Icon(
-                          Icons.monetization_on,
+                            width: 50.0,
+                           child: Icon(
+                            Icons.monetization_on,
                           color: Colors.grey,
-                          size: 30.0,
-                        ),
-                      ),
-                      Text('x10%',
-                        style: TextStyle(
-                            fontFamily: 'Montserrat',
+                           size: 30.0,
+                              ),
+                             ),
+                             Text('x10%',
+                         style: TextStyle(
+                             fontFamily: 'Montserrat',
                             fontSize: 17.0,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold
-                        ),
-                      ),
-                    ],
-                  )
-              )
-            ],
-          )
-        ],
+                           color: Colors.black,
+                          fontWeight: FontWeight.bold
+    ),
+    ),
+    ],
       ),
-      // bottomNavigationBar: Material(
-      //     elevation: 7.0,
-      //     color: Colors.white,
-      //     child: Container(
-      //         height: 50.0,
-      //         width: MediaQuery.of(context).size.width,
-      //         color: Colors.white,
-      //         child: Row(
-      //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //             children: [
-      //               SizedBox(width: 10.0),
-      //               InkWell(
-      //                 onTap: () {},
-      //                 child: Container(
-      //                   height: 50.0,
-      //                   width: 50.0,
-      //                   color: Colors.white,
-      //                   child: Icon(
-      //                     Icons.shopping_cart,
-      //                     color: Colors.grey,
-      //                   ),
-      //                 ),
-      //               ),
-      //               InkWell(
-      //                 onTap: () {},
-      //                 child: Container(
-      //                   height: 50.0,
-      //                   width: 50.0,
-      //                   color: Colors.white,
-      //                   child: Icon(
-      //                     Icons.account_box,
-      //                     color: Colors.grey,
-      //                   ),
-      //                 ),
-      //               ),
-                    // Container(
-                    //     color: Colors.teal,
-                    //     width: MediaQuery.of(context).size.width - 130.0,
-                    //     child: Center(
-                    //         child: Text(
-                    //           'Add to Cart',
-                    //           style: TextStyle(
-                    //               fontFamily: 'Montserrat',
-                    //               fontSize: 18.0,
-                    //               color: Colors.white,
-                    //               fontWeight: FontWeight.bold
-                    //           ),
-                    //         )
-                    //     )
-                    // )
-                 // ]
-              //)
-         // )
-    //  ),
-    );
-  }
-}
-
-
-
-class SelectedPhoto extends StatelessWidget {
-  final int numberOfDots;
-  final int photoIndex;
-
-  SelectedPhoto({required this.numberOfDots, required this.photoIndex});
-
-  Widget _inactivePhoto() {
-    return new Container(
-      child: Padding(
-        padding: EdgeInsets.only(left: 3.0, right: 3.0),
-        child: Container(
-            width: 8.0,
-            height: 8.0,
-            decoration: BoxDecoration(
-                color: Colors.grey, borderRadius: BorderRadius.circular(4.0))),
+    ),
+       SizedBox(height: 10.0,),
+       Container(
+         padding: EdgeInsets.all(8),
+        height: 50,
+        width: 50,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          shape: BoxShape.circle,
+        ),
+         child: Image.asset("images/heart.png"),
+       ),
+       ]
       ),
     );
-  }
-
-  Widget _activePhoto() {
-    return new Container(
-      child: Padding(
-        padding: EdgeInsets.only(left: 3.0, right: 3.0),
-        child: Container(
-            width: 10.0,
-            height: 10.0,
-            decoration: BoxDecoration(
-                color: Colors.teal,
-                borderRadius: BorderRadius.circular(5.0),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.grey, spreadRadius: 0.0, blurRadius: 2.0)
-                ])),
-      ),
-    );
-  }
-
-  List<Widget> _buildDots() {
-    List<Widget> dots = [];
-
-    for (int i = 0; i < numberOfDots; ++i) {
-      dots.add(i == photoIndex ? _activePhoto() : _inactivePhoto());
-    }
-
-    return dots;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: _buildDots(),
-        ));
   }
 }
 
