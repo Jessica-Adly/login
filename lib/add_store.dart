@@ -89,7 +89,32 @@ var storedescription=TextEditingController();
               SizedBox(
                 height: 20.0,
               ),
+              Row(
+                children: [
+                  Text('Add Photo',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0,
+                    ),),
+                  SizedBox(width: 10,),
+                  Container(
+                   width: 100.0,
+                   height: 100.0,
+                   decoration: BoxDecoration(
+                     shape: BoxShape.circle,
+                     color: Colors.white,
+                   ),
+                     child: IconButton(
+                      icon:Icon(Icons.camera_enhance_rounded) ,
+                       onPressed: ()
+                       {
 
+                       },
+                     ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20.0,),
               Container(
                 width:double.infinity,
                 color: Colors.teal,

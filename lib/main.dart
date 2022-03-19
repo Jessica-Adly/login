@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-       home: DetailsScreen(),
+       home: addstore(),
        theme: ThemeData(
            primarySwatch: Colors.teal,
          ),
