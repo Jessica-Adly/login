@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:login/add_store.dart';
 import 'package:login/login_screen.dart';
+import 'package:login/mainapp.dart';
 import 'package:login/onbording_screen.dart';
 
 import 'package:login/setting_screen.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-       home: addstore(),
+       home: DetailsScreen(),
        theme: ThemeData(
            primarySwatch: Colors.teal,
          ),

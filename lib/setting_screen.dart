@@ -17,17 +17,12 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(icon: Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.of(context).pop(),
+        leading: IconButton(icon:Icon(Icons.arrow_back_ios),
+          onPressed:() => Navigator.of(context).pop(),
         ),
-        title: Text(
-          'Setting',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+        title: Text("Setting"),
+        centerTitle: true,
           ),
-        ),
-      ),
       body: SettingsList(
           sections: [
       SettingsSection(
