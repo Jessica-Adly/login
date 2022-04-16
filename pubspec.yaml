@@ -32,6 +32,7 @@ dependencies:
   flutter_svg: ^0.17.4
   settings_ui: ^1.0.0
   carousel_slider: ^2.3.1
+  favorite_button: ^0.0.4
 
 
 

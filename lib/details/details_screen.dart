@@ -1,15 +1,18 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:favorite_button/favorite_button.dart';
 
 
 class DetailsScreen extends StatefulWidget{
+  const DetailsScreen({Key? key}) : super(key: key);
 
   @override
   _DetailsScreenState createState() => _DetailsScreenState();
 }
 
  class _DetailsScreenState extends State<DetailsScreen> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -269,25 +272,24 @@ class DetailsScreen extends StatefulWidget{
                             fontSize: 17.0,
                            color: Colors.black,
                           fontWeight: FontWeight.bold
-    ),
-    ),
-    ],
-      ),
-    ),
-       SizedBox(height: 10.0,),
-       Container(
-         padding: EdgeInsets.all(8),
-        height: 50,
-        width: 50,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          shape: BoxShape.circle,
-        ),
-         child: Image.asset("images/heart.png"),
-       ),
+                        ),
+                      ),
+                    ],
+                 ),
+                ),
+          ListTile(
+            selected: true,
+            trailing: FavoriteButton(
+              isFavorite: false,
+              valueChanged: (_isFavorite) {
+                print('Is Favorite : $_isFavorite');
+              },
+            ),
+          ),
        ]
       ),
     );
   }
+
 }
 
